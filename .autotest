@@ -1,13 +1,14 @@
 require 'autotest/growl' # enable pop-up windows
 require 'autotest/restart' # optional: forces autotest to pick the changes to this file
 require 'autotest/timestamp' # optional: shows timestamps for test runs
+require "test_notifier/runner/autotest"
 
-# filter out VCS files and other garbage to reduce HDD usage
 Autotest.add_hook :initialize do |autotest|
-  %w{.git .svn .hg .DS_Store ._* vendor tmp log doc}.each do |exception|
-    autotest.add_exception(exception)
+  autotest.add_mapping(%r%^spec/(requests)/.*rb$%) do|filename, _|
+    filename
   end
-end
+end 
+
 
 # do not clear console before running tests
 Autotest::Growl::clear_terminal = false
