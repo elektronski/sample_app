@@ -13,3 +13,13 @@ end
 # do not clear console before running tests
 Autotest::Growl::clear_terminal = false
 
+
+
+
+
+
+
+
+
+
+
